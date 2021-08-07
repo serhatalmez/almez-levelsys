@@ -6,7 +6,10 @@ Citizen.CreateThread(function()
         TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
         Citizen.Wait(30)
     end
+end)
 
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded', function(playerData)
     while pXP == nil do
         ESX.TriggerServerCallback('almez-levels:getPlayerData', function(data) 
             pXP = data.xp
