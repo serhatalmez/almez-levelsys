@@ -12,6 +12,7 @@ Citizen.CreateThread(function()
             pXP = data.xp
             pLevel = data.level
         end)
+        Citizen.Wait(30)
     end
 end)
 
