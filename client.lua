@@ -6,6 +6,13 @@ Citizen.CreateThread(function()
         TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
         Citizen.Wait(30)
     end
+
+    while pXP == nil do
+        ESX.TriggerServerCallback('almez-levels:getPlayerData', function(data) 
+            pXP = data.xp
+            pLevel = data.level
+        end)
+    end
 end)
 
 Citizen.CreateThread(function()
