@@ -1,6 +1,7 @@
 ESX = nil 
 pXP = nil
 pLevel = nil 
+playerLoaded = false
 Citizen.CreateThread(function()
     while ESX == nil do
         TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
@@ -15,6 +16,7 @@ AddEventHandler('esx:playerLoaded', function(playerData)
             pXP = data.xp
             pLevel = data.level
         end)
+        playerLoaded = true
         Citizen.Wait(30)
     end
 end)
@@ -22,10 +24,12 @@ end)
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1000)
-        ESX.TriggerServerCallback('almez-levels:getPlayerData', function(data) 
-            pXP = data.xp
-            pLevel = data.level
-        end) 
+        if playerLoaded then 
+            ESX.TriggerServerCallback('almez-levels:getPlayerData', function(data) 
+                pXP = data.xp
+                pLevel = data.level
+            end) 
+        end
     end
 end)
 
